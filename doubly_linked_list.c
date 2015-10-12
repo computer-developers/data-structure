@@ -42,7 +42,7 @@ void main()
 			case '6':return;
 			default:
 				{
-					printf("wrong choice!!!!");
+					printf("\nwrong choice!!!!");
 				}
 
 		}
