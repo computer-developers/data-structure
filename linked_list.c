@@ -89,12 +89,13 @@ void insend(int a)
 void del(int a)
 {
 	int i;
-	struct neel *p;
+	struct neel *p,*t;
 	if(ifempty())return;
 	p=first;
 	if(p->x==a)
 		{
 			p=p->y;
+			free(first);
 			first=p;
 			return;
 		}
@@ -102,8 +103,9 @@ void del(int a)
 		p=p->y;
 	if(p->y->x==a)
 		{
+			t=p->y;
 			p->y=p->y->y;
-			p=p->y;
+			free(t);
 		}
 	else
 		printf("\nelement not exist...");
@@ -179,15 +181,19 @@ int ifempty()
 }
 void reverse()
 {
-	struct neel *p,*q,*f;
+	struct neel *p,*q,*f,*t;
 	f=first;
 	q=f;
 	insert(q->x);
+	t=q;
 	q=q->y;
+	free(t);
 	first->y=NULL;
 	for(;q!=NULL;)
 	{
 		insert(q->x);
+		t=q;
 		q=q->y;
+		free(t);
 	}
 }

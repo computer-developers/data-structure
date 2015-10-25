@@ -100,12 +100,14 @@ void insat(int a,int b)
 }
 void del(int a)
 {
-	struct neel *p;
+	struct neel *p,*t;
 	if(ifempty())return;
 	p=first;
 	if(p->x==a)
 	{
+		t=p;
 		first=p->r;
+		free(t);
 		return;
 	}
 	for(;p->x!=a&&p->r!=NULL;)
@@ -115,11 +117,13 @@ void del(int a)
 			printf("\nelement not found!!!");
 			return;
 		}
+	t=p;
 	p->f->r=p->r;
 	if(p->r!=NULL)
 		p->r->f=p->f;
 	else
 		last=p->f;
+	free(t);
 }
 void display()
 {
