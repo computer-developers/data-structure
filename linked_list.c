@@ -79,6 +79,11 @@ void insend(int a)
 {
 	struct neel *p;
 	p=first;
+	if(p==NULL)
+	{
+		insert(a);
+		return;
+	}
 	for(;p->y!=NULL;)
 		p=p->y;
 	p->y=(struct neel*)malloc(sizeof(struct neel));
