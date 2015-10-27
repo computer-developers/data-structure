@@ -18,15 +18,8 @@ void main()
 {
 vertices();
 edges();
-//display();
-//printf("check point 3 - %d...\n",first->x);
-//{
-//	s=(struct neel*)malloc(sizeof(struct neel));
-//	s->x=first->x;
-//	s->y=NULL;
-//}
+display();
 s=insend(first->x,s);
-//printf("check point 4...\n");
 bfs();
 getch();
 }
@@ -36,7 +29,7 @@ struct neel * insend(int a,struct neel *f)
 	if(f==NULL)
 	{
 		f=(struct neel*)malloc(sizeof(struct neel));
-		f->x=first->x;
+		f->x=a;
 		f->y=NULL;
 		return f;
 	}
@@ -86,14 +79,8 @@ void edges()
 				continue;
 			}
 			for(u=0;(first+u)->x!=y;u++);
-			{
-			struct neel **temp=&first,;
-			*(temp+u)=insend(x,first+t);
-			printf("%d-\n",first->x);
-			printf("%d-\n",(*temp)->x);
-			*(temp+t)=insend(y,first+u);
-			printf("%d-\n",first->x);
-			}
+			insend(y,first+t);
+			insend(x,first+u);
 		}
 	}
 }
@@ -123,42 +110,54 @@ void display()
 void bfs()
 {
 	printf("check point 1...\n");
-	struct neel *p;
-	p=s;
-	for(;p!=NULL;)
+	struct neel *p,*t;
+	t=s;
+	for(;t!=NULL;)
 	{
-		printf("%d - ",p->x);
-		p=p->y;
+		printf("s:%d - ",t->x);
+		t=t->y;
 	}
-	if(!getnext(&p))
+neel:if(!getnext(&p))
 		return;
-	printf("check point 5...\n");
+	//printf("check point 5...\n");
 	if(ifexist(p->x,u))
-		return;
-	printf("check point 6...\n");
+		goto neel;
+	t=p;
+	for(;t!=NULL;)
+	{
+		printf("p:%d - ",t->x);
+		t=t->y;
+	}
+	//printf("check point 6...\n");
 	printf("%d->",p->x);
 	u=insend(p->x,u);
 	printf("check point 9...\n");
+	t=u;
+	for(;t!=NULL;)
+	{
+		printf("u:%d - ",t->x);
+		t=t->y;
+	}
 	p=p->y;
 	for(;p!=NULL;)
 	{
-		//printf("check point 12...\n");
-		//printf("check point 13...\n");
+		printf("check point 12...\n");
 		s=insend(p->x,s);	
-		//printf("check point 11...\n");
+		printf("check point 11-%d...\n",p->x);
 		p=p->y;
-		//printf("check point 14...\n");
 	}
-	printf("check point 10...\n");
+	//printf("check point 10...\n");
 	p=NULL;
 	printf("check point 2...\n");
 	bfs();
 }
 int getnext(struct neel **f)
 {
+	int i;
 	if(s==NULL)
 		return 0;
-	*f=s;
+	for(i=0;(first+i)->x!=s->x;i++);
+	*f=first+i;
 	s=s->y;
 	return 1;	
 }
