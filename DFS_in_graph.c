@@ -10,17 +10,18 @@ struct neel
 void edges();
 int ifexist(int,struct neel *);
 struct neel * insend(int,struct neel *);
+struct neel * insert(int,struct neel *);
 void vertices();
 int search(int,struct neel *,int);
 int getnext(struct neel **);
-void bfs();
+void dfs();
 void main()
 {
 vertices();
 edges();
-s=insend(first->x,s);
-printf("\nBreadth First Search Sequence :- ");
-bfs();
+s=insert(first->x,s);
+printf("\nDepth First Search Sequence :- ");
+dfs();
 getch();
 }
 struct neel * insend(int a,struct neel *f)
@@ -92,7 +93,7 @@ int search(int z,struct neel *f,int l)
 			return 1;
 	return 0;	
 }
-void bfs()
+void dfs()
 {
 	struct neel *p;
 neel:if(!getnext(&p))
@@ -104,11 +105,11 @@ neel:if(!getnext(&p))
 	p=p->y;
 	for(;p!=NULL;)
 	{
-		s=insend(p->x,s);	
+		s=insert(p->x,s);	
 		p=p->y;
 	}
 	p=NULL;
-	bfs();
+	dfs();
 }
 int getnext(struct neel **f)
 {
@@ -129,4 +130,12 @@ int ifexist(int a,struct neel *p)
 		p=p->y;
 	}
 	return 0;
+}
+struct neel * insert(int a,struct neel *f)
+{
+	struct neel *p;
+	p=(struct neel *)malloc(sizeof(struct neel));
+	p->x=a;
+	p->y=f;
+	return p;	
 }
