@@ -9,17 +9,17 @@ struct neel
 }*first,*s,*u;
 void edges();
 int ifexist(int,struct neel *);
-struct neel * insend(int a,struct neel *);
+struct neel * insend(int,struct neel *);
 void vertices();
-void display();
+int search(int,struct neel *,int);
 int getnext(struct neel **);
 void bfs();
 void main()
 {
 vertices();
 edges();
-display();
 s=insend(first->x,s);
+printf("\nBreadth First Search sequence :- ");
 bfs();
 getch();
 }
@@ -92,63 +92,22 @@ int search(int z,struct neel *f,int l)
 			return 1;
 	return 0;	
 }
-void display()
-{
-	struct neel *p;
-	int i;
-	for(i=0;i<nv;i++)
-	{
-	p=first+i;
-	printf("\n");
-	for(;p!=NULL;)
-	{
-		printf("%d->",p->x);
-		p=p->y;
-	}
-	}
-}
 void bfs()
 {
-	printf("check point 1...\n");
-	struct neel *p,*t;
-	t=s;
-	for(;t!=NULL;)
-	{
-		printf("s:%d - ",t->x);
-		t=t->y;
-	}
+	struct neel *p;
 neel:if(!getnext(&p))
 		return;
-	//printf("check point 5...\n");
 	if(ifexist(p->x,u))
 		goto neel;
-	t=p;
-	for(;t!=NULL;)
-	{
-		printf("p:%d - ",t->x);
-		t=t->y;
-	}
-	//printf("check point 6...\n");
-	printf("%d->",p->x);
+	printf("%d ",p->x);
 	u=insend(p->x,u);
-	printf("check point 9...\n");
-	t=u;
-	for(;t!=NULL;)
-	{
-		printf("u:%d - ",t->x);
-		t=t->y;
-	}
 	p=p->y;
 	for(;p!=NULL;)
 	{
-		printf("check point 12...\n");
 		s=insend(p->x,s);	
-		printf("check point 11-%d...\n",p->x);
 		p=p->y;
 	}
-	//printf("check point 10...\n");
 	p=NULL;
-	printf("check point 2...\n");
 	bfs();
 }
 int getnext(struct neel **f)
@@ -163,13 +122,11 @@ int getnext(struct neel **f)
 }
 int ifexist(int a,struct neel *p)
 {
-	//printf("check point 7...\n");
 	for(;p!=NULL;)
 	{
 		if(p->x==a)
 			return 1;
 		p=p->y;
 	}
-	//printf("check point 8...\n");
 	return 0;
 }
