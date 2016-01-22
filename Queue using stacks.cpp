@@ -30,9 +30,9 @@ class queue
 	}
 	void insert(int x)
 	{	if(!x)
-			printf("%d can not be inserted in queue..\n",x);
+			printf("\n%d can not be inserted in queue..\n",x);
 		if(!s1.push(x))
-			printf("queue over flow!!!");
+			printf("\nqueue over flow!!!");
 	}
 	void del()
 	{
@@ -45,9 +45,9 @@ class queue
 		}
 		x=s2.pop();
 		if(x)
-			printf("%d deleted\n",x);
+			printf("\n%d deleted\n",x);
 		else
-			printf("queue under flow\n");
+			printf("\nqueue under flow\n");
 		x=s2.pop();
 		for(;x;)
 		{
@@ -72,6 +72,7 @@ int main()
 			case '0': return 0; break;
 			default : printf("\n wrong choice !!!!");		  	
 		}
+		printf("\nenter choice...");
 	}
 }
 
