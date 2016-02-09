@@ -1,4 +1,5 @@
 /*
+Designed by neel patel..
 this program is written in dev-cpp & compiled by tdm-gcc 4.8.1 compiler
 getche() used to eliminate garbage input.it can be replaced by scanf().
 */
@@ -14,6 +15,8 @@ int f1;
 void insert(char,char);
 struct neel * travers(char);
 struct neel * inorder(struct neel *,char);
+void preorder(struct neel *p);
+void postorder(struct neel *p);
 void main()
 {
 	char c,d;
@@ -41,7 +44,14 @@ scanr:c=getche();
 					insert(c,d);
 					break;
 			case '2':travers('#');break;
-			case '0':return;break;
+			case '3':printf("\nPREORDER SEQUENCE :- ");
+					preorder(root);
+					break;
+			case '4':printf("\nPOSTORDER SEQUENCE :- ");
+					postorder(root);
+					break;
+			case '0':return;
+					break;
 			default:
 				printf("wrong choice...");	
 		}	
@@ -124,4 +134,20 @@ struct neel * inorder(struct neel *p,char c)
 	if(p->r!=NULL)
 		inorder(p->r,c);
 	return p1;
+}
+void preorder(struct neel *p)
+{
+	printf("%c ",p->x);
+	if(p->l!=NULL)
+		preorder(p->l);
+	if(p->r!=NULL)
+		preorder(p->r);	
+}
+void postorder(struct neel *p)
+{
+	if(p->l!=NULL)
+		postorder(p->l);
+	if(p->r!=NULL)
+		postorder(p->r);
+	printf("%c ",p->x);
 }

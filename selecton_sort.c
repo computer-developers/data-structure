@@ -1,35 +1,32 @@
 #include<conio.h>
 #include<stdio.h>
-int s[7];
-void selection();
+#define size 7
+void selection(int *,int);
 void main()
 {
-int i;
-printf("\nenter 7 elements..");
-for(i=0;i<7;i++)
-	scanf("%d",&s[i]);
-selection();
-printf("\n");
-for(i=0;i<7;i++)
-	printf("%d ",s[i]);
-getch();
+	int a[size],i=size;
+	printf("enter %d elements..",i);
+	for(i=0;i<size;i++)
+		scanf("%d",&a[i]);
+	selection(&a,size);
+	printf("\nsorted elements...");
+	for(i=0;i<size;i++)
+		printf("%d ",a[i]);
 }
-void selection()
+void selection(int *p,int x)
 {
-	int i,c,t;
-	for(t=0;t<6;t++)
+	int i,j,k,t;
+	for(i=0;i<x-1;i++)
 		{
-			c=t+1;
-			for(i=t+2;i<7;i++)
-			{
-				if(s[c]>s[i])
-					c=i;
-			}
-			if(s[t]>s[c])
-			{
-				s[t]=s[t]+s[c];
-				s[c]=s[t]-s[c];
-				s[t]=s[t]-s[c];
-			}
+			k=i+1;
+			for(j=i+2;j<x;j++)
+				if(*(p+k)>*(p+j))
+					k=j;	
+			if(*(p+i)>*(p+k))
+				{
+					t=*(p+k);
+					*(p+k)=*(p+i);
+					*(p+i)=t;
+				}
 		}
 }

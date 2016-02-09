@@ -1,34 +1,35 @@
 #include<conio.h>
 #include<stdio.h>
-int s[7];
-void bubble();
+#define size 7
+void bubble(int *,int);
 void main()
 {
-int i;
-printf("\nenter 7 elements..");
-for(i=0;i<7;i++)
-	scanf("%d",&s[i]);
-bubble();
-printf("\n");
-for(i=0;i<7;i++)
-	printf("%d ",s[i]);
-getch();
+	int a[size],i=size;
+	printf("enter %d elements..",i);
+	for(i=0;i<size;i++)
+		scanf("%d",&a[i]);
+	bubble(&a,size);
+	printf("\nsorted elements...");
+	for(i=0;i<size;i++)
+		printf("%d ",a[i]);
 }
-void bubble()
+void bubble(int *p,int x)
 {
-	int c=1,i;
-	for(;c!=0;)
+	int i,j,t,c;
+	for(j=0;j<=x;j++)
 		{
 			c=0;
-			for(i=0;i<6;i++)
+			for(i=0;i<x-1;i++)
 			{
-				if(s[i]>s[i+1])
+				if(*(p+i)>*(p+i+1))
 				{
-					s[i]=s[i]+s[i+1];
-					s[i+1]=s[i]-s[i+1];
-					s[i]=s[i]-s[i+1];
+					t=*(p+i+1);
+					*(p+i+1)=*(p+i);
+					*(p+i)=t;
 					c++;
 				}
 			}
+			if(!c)return;
 		}
+	printf("\nerror!!!");
 }
