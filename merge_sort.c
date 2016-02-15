@@ -1,18 +1,18 @@
 #include<conio.h>
 #include<stdio.h>
-int s[8];
+#define size 8
 void merge(int *,int);
 void merges(int *,int);
 void main()
 {
-int i;
-printf("enter elements...");
-for(i=0;i<8;i++)
-	scanf("%d",&s[i]);
-merge(&s[0],i);
-for(i=0;i<8;i++)
-	printf("%d ",s[i]);
-getch();
+	int i,s[size];
+	printf("enter elements...");
+	for(i=0;i<size;i++)
+		scanf("%d",&s[i]);
+	merge(&s[0],size);
+	for(i=0;i<size;i++)
+		printf("%d ",s[i]);
+	getch();
 }
 void merge(int *a,int i)
 {

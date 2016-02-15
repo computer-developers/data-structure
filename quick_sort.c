@@ -1,21 +1,21 @@
 #include<conio.h>
 #include<stdio.h>
-int a[7];
-void quick(int,int);
+#define size 7
+void quick(int *,int,int);
 void swap(int *,int *);
 void main()
 {
-	int i;
+	int i,a[size];;
 	printf("enter elements..");
-	for(i=0;i<7;i++)
+	for(i=0;i<size;i++)
 		scanf("%d",&a[i]);
-	quick(0,6);
+	quick(&a[0],0,size-1);
 	printf("\nsorted list:");
-	for(i=0;i<7;i++)
+	for(i=0;i<size;i++)
 		printf("%d ",a[i]);
-getch();
+	getch();
 }
-void quick(int l,int u)
+void quick(int *a,int l,int u)
 {
 	int f=1,i,j,p,k;
 	p=l;
@@ -25,15 +25,15 @@ void quick(int l,int u)
 		return;
 	for(;f;)
 	{
-		for(;a[i]<a[p];i++);
-		for(;a[j]>a[p];j--);
+		for(;*(a+i)<*(a+p);i++);
+		for(;*(a+j)>*(a+p);j--);
 		if(i<j)
-			swap(&a[i],&a[j]);
+			swap(a+i,a+j);
 		else f=0;
 	}
-	swap(&a[l],&a[j]);
-	quick(l,j-1);
-	quick(j+1,u);
+	swap(a+l,a+j);
+	quick(a,l,j-1);
+	quick(a,j+1,u);
 }
 void swap(int *i,int *j)
 {

@@ -1,52 +1,55 @@
 #include<conio.h>
 #include<stdio.h>
-int a[7];
-void sort();
-int search(int);
+#define size 7
+void sort(int *p,int x);
+int search(int *,int,int);
 void main()
 {
-	int i;
-	for(i=0;i<7;i++)
+	int a[size],i;
+	for(i=0;i<size;i++)
 		scanf("%d",&a[i]);
-	sort();
-	for(i=0;i<7;i++)
+	sort(&a[0],size);
+	for(i=0;i<size;i++)
 		printf("%d ",a[i]);
 	printf("enter element...");
 	scanf("%d",&i);
-	if(search(i))
-	printf("place of element is %d",search(i));
-getch();
+	if(i=search(&a[0],size,i))
+	printf("place of element is %d",i);
+	getch();
 }
-void sort()
+void sort(int *p,int x)
 {
-	int i,j;
-	for(i=0;i<6;i++)
-		for(j=i;j<7;j++)
+	int i,j,k,t;
+	for(i=0;i<x-1;i++)
 		{
-			if(a[i]>a[j])
-			{
-				a[i]=a[i]+a[j];
-				a[j]=a[i]-a[j];
-				a[i]=a[i]-a[j];
-			}
+			k=i+1;
+			for(j=i+2;j<x;j++)
+				if(*(p+k)>*(p+j))
+					k=j;	
+			if(*(p+i)>*(p+k))
+				{
+					t=*(p+k);
+					*(p+k)=*(p+i);
+					*(p+i)=t;
+				}
 		}
 }
-int search(int s)
+int search(int *a,int l,int s)
 {
-	int f=0,l=6,m=3;
+	int f=0,m=3;
 	for(;1;)
 	{
-		if(a[m]<s)
+		if(*(a+m)<s)
 		{
 			f=m+1;
 			m=(f+l)/2;
 		}
-		else if(a[m]>s)
+		else if(*(a+m)>s)
 		{
 			l=m-1;
 			m=(f+1)/2;
 		}
-		else if(a[m]==s)
+		else if(*(a+m)==s)
 			return m+1;
 		if(f>l)
 		{
