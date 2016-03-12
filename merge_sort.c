@@ -1,28 +1,37 @@
 #include<conio.h>
 #include<stdio.h>
 #define size 8
-void merge(int *,int);
-void merges(int *,int);
+void merge(int *,int,int);
+void merges(int *,int,int);
 void main()
 {
-	int i,s[size];
+	int i,s[size],f;
+	char g;
 	printf("enter elements...");
 	for(i=0;i<size;i++)
 		scanf("%d",&s[i]);
-	merge(&s[0],size);
+	printf("\nA-ascending\nD-descending\n");
+get:g=getch();
+	if(g=='a'||g=='A')
+		f=1;
+	else if(g=='d'||g=='D')
+		f=-1;
+	else
+		goto get;
+	merge(&s[0],size,f);
+	printf("\nsorted elements...");
 	for(i=0;i<size;i++)
 		printf("%d ",s[i]);
-	getch();
 }
-void merge(int *a,int i)
+void merge(int *a,int i,int f)
 {
 	if(i==1)
 		return;
-	merge(a,i/2);
-	merge(a+i/2,(i+1)/2);
-	merges(a,i);
+	merge(a,i/2,f);
+	merge(a+i/2,(i+1)/2,f);
+	merges(a,i,f);
 }
-void merges(int *a,int i)
+void merges(int *a,int i,int f)
 {
 	int b[i/2],c[(i+1)/2],bi=i/2,ci=(i+1)/2,k,p=0,r=0;
 	for(k=0;k<bi;k++)
@@ -31,7 +40,7 @@ void merges(int *a,int i)
 		c[k]=*(a+k+bi);
 	for(k=0;k<i&&p<bi&&r<ci;k++)
 	{
-		if(b[p]<c[r])
+		if(b[p]*f<c[r]*f)
 		{
 			*(a+k)=b[p];
 			p++;
