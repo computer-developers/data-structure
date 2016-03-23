@@ -12,7 +12,6 @@ struct neel * insend(int,int,struct neel *);
 void vertices();
 int getnext(struct neel **);
 void prim();
-void display();
 void main()
 {
 vertices();
@@ -95,21 +94,6 @@ int search(int z,struct neel *f,int l)
 		if((f+i)!=NULL&&((f+i)->x==z))
 			return 1;
 	return 0;	
-}
-void display()
-{
-	struct neel *p;
-	int i;
-	for(i=0;i<nv;i++)
-	{
-		p=first+i;
-		printf("\n");
-		for(;p!=NULL;)
-		{
-			printf("(%d)->%d",p->w,p->x);
-			p=p->y;
-		}
-	}
 }
 void prim()
 {
