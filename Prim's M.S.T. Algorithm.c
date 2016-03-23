@@ -20,7 +20,6 @@ u=(int*)calloc(nv,sizeof(int));
 u[0]=0;
 nuv=1;
 prim();
-display();
 printf("\nTotal Weight of Minimum Spanning Tree :- %d",pw);
 getch();
 }
