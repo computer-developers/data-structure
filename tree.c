@@ -31,9 +31,9 @@ scanr:c=getche();
 	root->x=c;
 	root->l=NULL;
 	root->r=NULL;
-	printf("\nmenu\n1.insert\n2.inorder travers\n0.exit");
 	for(;1;)
 	{
+		printf("\nmenu\n1.insert\n2.inorder travers\n3.preorder travers\n4.postorder travers\n0.exit");
 		printf("\nenter your choice..\n");
 		switch(getche())
 		{
