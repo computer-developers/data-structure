@@ -45,19 +45,6 @@ public:
 		return g;
 	}
 	
-	void display()
-	{
-		struct neel *p;
-		if(s==NULL)return;
-		p=s;
-		printf("\n");
-		for(;p!=NULL;)
-		{
-			printf("%d ",p->x);
-			p=p->y;
-		}
-	}
-	
 	int search(int a)
 	{
 		int i;
@@ -122,13 +109,6 @@ private:
 
 public:
 	struct tab *firste;
-	void display()
-	{
-		int i;
-		for(i=0;i<ne;i++)
-			printf("\n%d %d %d",(firste+i)->v1,(firste+i)->v2,(firste+i)->w);
-	}
-	
 	int getne()
 	{
 		return ne;
@@ -138,8 +118,6 @@ public:
 	{
 		vertices();
 		edges();
-		printf("\nTable of edges..");
-		display();
 	}
 };
 class kruskal
@@ -172,10 +150,8 @@ private:
 	{
 		int i,l;
 		l=g.getne();
-		printf("\ncheck 1...");
 		for(i=0;i<l;i++)
 		{
-			printf("\ncheck 2...");
 			if(!u.search((p+i)->v1)||!u.search((p+i)->v2))
 			{
 				w=w+(p+i)->w;
@@ -190,8 +166,6 @@ public:
 	kruskal()
 	{
 		insertion(g.firste,g.getne());
-		printf("\n\nTable of Edges after sorting according to weight..");
-		g.display();
 		method(g.firste);
 		printf("\nTotal Weight of Minimum Spanning Tree is %d",w);
 	}
