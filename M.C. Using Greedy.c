@@ -6,7 +6,7 @@ struct tab
 }*c;
 int nc;
 void method(int);
-int bestsol(int,int);
+int add(int,int);
 void scan();
 void main()
 {
