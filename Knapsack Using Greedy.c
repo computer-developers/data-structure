@@ -7,23 +7,22 @@ struct tab
 float c;
 int n;
 void selection(struct tab *,int);
-int main() 
+void main() 
 {
 	int i,j;
 	printf("\nEnter the no. of objects:- ");
 	scanf("%d",&n);
 	k=(struct tab *)calloc(n,sizeof(struct tab));
-	printf("\nEnter the weigth and profits of each object:- ");
+	printf("\nEnter the weigth & profits of each object:- ");
 	for(i=0;i<n;i++)
 	{
 		scanf("%f %f",&k[i].w,&k[i].p);
 		k[i].r=k[i].p/k[i].w;
 	}
-	printf("\nEnter the capacityacity of knapsack:- ");
+	printf("\nEnter the capacity of knapsack:- ");
 	scanf("%f",&c);
 	selection(k,n);
    	knapsack();
-   	return 0;
 }
 void selection(struct tab *q,int x)
 {
